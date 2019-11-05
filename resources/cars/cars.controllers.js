@@ -28,10 +28,17 @@ export const deleteCar = async (req, res) => {
 };
 
 export const createCar = async (req, res) => {
-  const { vin, model, make, mileage } = req.body;
+  const { vin, model, make, mileage, transmission_type, status } = req.body;
 
   try {
-    let car = await postOne({ vin, model, make, mileage });
+    let car = await postOne({
+      vin,
+      model,
+      make,
+      mileage,
+      transmission_type,
+      status
+    });
     return res.status(201).json(car);
   } catch (error) {
     return res
@@ -42,10 +49,17 @@ export const createCar = async (req, res) => {
 
 export const editCar = async (req, res) => {
   const { id } = req.params;
-  const { vin, model, make, mileage } = req.body;
+  const { vin, model, make, mileage, transmission_mode, status } = req.body;
 
   try {
-    let car = await editOne(id, { vin, model, make, mileage });
+    let car = await editOne(id, {
+      vin,
+      model,
+      make,
+      mileage,
+      transmission_mode,
+      status
+    });
     return res.status(200).json(car);
   } catch (error) {
     return res
